@@ -12,12 +12,11 @@
     align-items: center;
     border: none;
     border-radius: 0.8rem;
-    width: 13rem;
-    height: 14rem;
+    width: 18rem;
+    height: 30rem;
     background-color: rgb(255, 255, 255);  
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     padding: 2.5rem;
-    gap: 2rem;
     transition: transform 0.3s ease;
   }
 
@@ -45,13 +44,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 4rem;
+    height: 3rem;
     width: 100%;
-    margin-top: 2rem;
     border: none;
     border-radius: 0.5rem;
   }
   
   .btn:hover{
     background-color: #ff8d29;
+  }
+
+  #agregado{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(208, 255, 208);
+    height: 2rem;
+    width: 100%;
   }
