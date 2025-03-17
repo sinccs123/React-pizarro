@@ -1,8 +1,8 @@
 import {useEffect, useState} from 'react';
-import {productos} from '../../productos';
 import Item from '../Item/Item';
 import './ItemListContainer.css';
-import { FetchData } from '../../FetchData';
+import { FetchData, getAPI, postAPI } from '../../FetchData';
+import ItemDetail from '../ItemDetail/ItemDetail';
 
 
 
@@ -11,17 +11,19 @@ function ItemListContainer () {
     const [TodosLosProductos, setTodosLosProductos] = useState([]);
     const [misProductos, setMisProductos] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [detalleFiltrado, setDetalleFiltrado] = useState(false);
 
-
-    const usarFiltro = (filtro)=> {
+    const usarFiltro = (filtro, id)=> {
         switch(filtro){
                 case "Todos":
+                setDetalleFiltrado(false);
                 setMisProductos(TodosLosProductos);
                 break;
             
                 case "Ninguno":
-                setMisProductos([]);
-                break;
+                    setDetalleFiltrado(false);
+                    setMisProductos([]);
+                    break;
 
                 case "Baratos":
                     setMisProductos(TodosLosProductos.filter(el => el.precio <= 200));
@@ -29,6 +31,11 @@ function ItemListContainer () {
 
                 case "Caros":
                     setMisProductos(TodosLosProductos.filter(el => el.precio >= 300));
+                    break;
+                
+                case "Detalle":
+                    setDetalleFiltrado(true);
+                    setMisProductos(TodosLosProductos.filter(el => el.id === id));
                     break;
 
             default:
@@ -43,8 +50,24 @@ function ItemListContainer () {
             setMisProductos(response);
             setLoading(false);
         })
-        .catch(err => console.log(err));
+        .catch(err => console.error(err));
+    
+    /*    fetch("https://jsonplaceholder.typicode.com/todos") .then(response => response.json())
+        .then (data => console.log(data))
+        .catch(err => console.error(err));
+
+        getAPI("https://jsonplaceholder.typicode.com/todos")
+        .then(data => console.log(data));
+
+        postAPI("https://jsonplaceholder.typicode.com/posts", {
+            title: "CustomTask",
+            userId: 2,
+            body: "To complete",
+        }) .then(data => console.log(data));
+    */
+
     },[])
+    
 
     return(
         <>
@@ -58,9 +81,10 @@ function ItemListContainer () {
         <div className="card-container">
             {
                 loading ? <p>Cargando Productos</p> :
-                misProductos.map(listado =>{
+                detalleFiltrado ? <ItemDetail item={misProductos[0]} usarFiltro={usarFiltro}/> :
+                misProductos.map((el, index) => {
                     return(
-                        <Item key={listado.id} nombre={listado.nombre} precio={listado.precio}/>
+                        <Item key={index} id={el.id} nombre={el.nombre} precio={el.precio} usarFiltro={usarFiltro}/>
                     );
                 })
             }

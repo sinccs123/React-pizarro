@@ -3,6 +3,7 @@
 
 *{
   margin: 0;
+  font-family: poppins;
 }
 
 .card{
@@ -12,8 +13,8 @@
     align-items: center;
     border: none;
     border-radius: 0.8rem;
-    width: 18rem;
-    height: 30rem;
+    width: 15rem;
+    height: 20rem;
     background-color: rgb(255, 255, 255);  
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     padding: 2.5rem;
@@ -25,33 +26,35 @@
 }
   
   .Ctitle{
-    font-family: poppins;
     font-size: 1.4rem;
     font-weight: 600;
+    padding-bottom: 3rem;
   }
   
   .Ctext{
-    font-family: poppins;
     font-size: 1rem;
     font-weight: 500;
+    padding-top: 2rem;
   }
   
   .btn{
-    background-color: #f8640e;
-    font-family: poppins;
-    font-size: 1rem;
-    font-weight: 500;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #f8640e;
+    font-size: 1rem;
+    font-weight: 500;
     height: 3rem;
     width: 100%;
     border: none;
     border-radius: 0.5rem;
+    color: rgb(18, 18, 18);
+    padding: 0;
   }
   
   .btn:hover{
     background-color: #ff8d29;
+    color: rgb(18, 18, 18);
   }
 
   #agregado{

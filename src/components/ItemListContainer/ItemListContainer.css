@@ -13,3 +13,27 @@
   background-color: #ebebeb;
 }
 
+.Filtros{
+  background-color: black;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: end;
+  height: 2rem;
+  gap: 1rem;
+}
+
+button{
+  background-color: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding-right: 2rem;
+}
+
+button:hover{
+  background-color: transparent;
+  border: none;
+  color: #f8640e;
+  cursor: pointer;
+}
