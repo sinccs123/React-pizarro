@@ -50,6 +50,7 @@
     border-radius: 0.5rem;
     color: rgb(18, 18, 18);
     padding: 0;
+    text-decoration: none;
   }
   
   .btn:hover{

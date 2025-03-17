@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './Item.css';
 
 function Item({id, nombre, precio, usarFiltro}) {
@@ -10,8 +11,12 @@ function Item({id, nombre, precio, usarFiltro}) {
         <div className="card">
             <h2 className="Ctitle">{nombre}</h2>
             <h3 className="Ctext">{"$" + precio}</h3>
-            <button className="btn" onClick={() => agregarCarrito()}>Agregar al carrito</button>
-            <button className="btn" onClick={() => usarFiltro("Detalle", id)}>Ver detalle</button>
+            <button  disabled={!nombre} className="btn" onClick={() => agregarCarrito()}>Agregar al carrito</button>
+            <Link className="btn" to={`/detalle/${id}`}>
+                <button  disabled={!nombre} className="btn">
+                    Ver detalle
+                </button>
+            </Link>
         </div>
     );
 };

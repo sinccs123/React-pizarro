@@ -1,36 +1,51 @@
-import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import './ItemDetail.css';
+import { useEffect, useState } from 'react';
+import { FetchData } from '../../FetchData';
 
-function ItemDetail({ item, usarFiltro }) {
+function ItemDetail() {
+    
+    const { id } = useParams();
 
-    const {id, nombre, precio, descripcion, oferta, stock} = item;
+    const [detalle, setDetalle] = useState(null) 
 
     function agregarCarrito() {
         console.log("Vas a agregar:", nombre);
     }
 
-    useEffect(() => {
-        console.log(item);
-    },[]);
+    useEffect(()=> {
+        FetchData().then(response =>{
+            const detalleDelProducto = response.find(el => el.id === parseInt(id));
+            setDetalle(detalleDelProducto);
+        })
+            .catch(err => console.error(err));
+    },[id]);
 
     return(
-        <div className="card-detail">
-            <button className="btn-back" onClick={() => usarFiltro("Todos")}></button>
+
+        !detalle ? <p>Cargando</p>:
+
+            <div className="card-detail"> 
+
+            <h2>{detalle.nombre || "NO DISPONIBLE"}</h2>
+            <h3>Precio: ${detalle.precio || "SIN PRECIO"}</h3>
+            <p>Descripción: {detalle.descripcion}</p>
 
             {
-                oferta && <p><span className='span-positive'>Producto en Oferta</span></p>
+                detalle.oferta && <p><span className='span-positive'>Producto en Oferta</span></p>
             }
-            <h2 className="Ctitle-detail">{nombre}</h2>
-            <h3 className="Ctext-detail">{"$" + precio}</h3>
-            <p>Descripcion: {descripcion}</p>
+            <h2 className="Ctitle-detail">{detalle.nombre}</h2>
+            <h3 className="Ctext-detail">{"$" + detalle.precio}</h3>
+            <p>Descripcion: {detalle.descripcion}</p>
 
             {
-                stock > 0 ?
-                <p>Quedan: {stock} unidades</p> :
+                detalle.stock > 0 ?
+                <p>Quedan: {detalle.stock} unidades</p> :
                 <p className='span-negative'>Producto agotado!</p>
             }
 
-            <button disabled={stock === 0} className="btn-detail" onClick={() => agregarCarrito()}>Agregar al carrito</button>
+            <button disabled={detalle.stock === 0} className="btn-detail" onClick={() => agregarCarrito()}>Agregar al carrito</button>
+            <button className="btn-detail">Volver al inicio</button>
 
         </div>
     );
