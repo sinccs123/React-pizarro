@@ -6,6 +6,12 @@
     font-family: poppins;
 }
 
+.container-card{
+    display: flex;
+    justify-content: center;
+    margin-top: 1.2rem;
+}
+
 .card-detail{
     display: flex;
     flex-direction: column;
@@ -13,7 +19,7 @@
     align-items: center;
     border: none;
     border-radius: 0.8rem;
-    width: 50rem;
+    width: 35rem;
     height: 25rem;
     background-color: rgb(255, 255, 255);  
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -44,6 +50,7 @@
     border: none;
     border-radius: 0.5rem;
     padding: 0;
+    text-decoration: none;
 }
 
 .btn-detail:disabled{
@@ -97,9 +104,6 @@
     border: transparent;
     justify-content: center;
     align-items: center;
-    left: 22rem;
-    bottom: 9.2rem;
-    position: relative;
 }
 
 .span-negative{
@@ -113,13 +117,4 @@
     border: transparent;
     justify-content: center;
     align-items: center;
-    left: 22rem;
-    bottom: 18.5rem;
-    position: relative;
-}
-
-h2{
-    display: flex;
-    margin-bottom: 14rem;
-    position: absolute;
 }

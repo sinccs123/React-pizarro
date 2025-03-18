@@ -6,7 +6,7 @@ function Navbar() {
     return(
         <header>
             <nav className="menu">
-                <img src="../src/assets/logo.png" alt="logo" className="logo"/>
+                <Link to="/"><img src="../src/assets/logo.png" alt="logo" className="logo"/></Link>
                 <ul className="opciones">
                     <li className="opciones-items">
                         <Link to="/">

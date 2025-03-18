@@ -2,7 +2,6 @@ import {useEffect, useState} from 'react';
 import Item from '../Item/Item';
 import './ItemListContainer.css';
 import { FetchData } from '../../FetchData';
-import ItemDetail from '../ItemDetail/ItemDetail';
 import { useParams } from 'react-router-dom';
 
 

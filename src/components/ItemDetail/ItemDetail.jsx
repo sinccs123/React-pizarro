@@ -1,7 +1,8 @@
-import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router';
 import './ItemDetail.css';
 import { useEffect, useState } from 'react';
 import { FetchData } from '../../FetchData';
+import { Link } from 'react-router-dom';
 
 function ItemDetail() {
     
@@ -22,31 +23,27 @@ function ItemDetail() {
     },[id]);
 
     return(
+            !detalle ? <p>Cargando</p>:
+        <div className="container-card">
+                <div className="card-detail"> 
 
-        !detalle ? <p>Cargando</p>:
+                {
+                    detalle.oferta && <p><span className='span-positive'>Producto en Oferta</span></p>
+                }
+                <h2 className="Ctitle-detail">{detalle.nombre}</h2>
+                <h3 className="Ctext-detail">{"$" + detalle.precio}</h3>
+                <p>Descripcion: {detalle.descripcion}</p>
 
-            <div className="card-detail"> 
+                {
+                    detalle.stock > 0 ?
+                    <p>Quedan: {detalle.stock} unidades</p> :
+                    <p className='span-negative'>Producto agotado!</p>
+                }
 
-            <h2>{detalle.nombre || "NO DISPONIBLE"}</h2>
-            <h3>Precio: ${detalle.precio || "SIN PRECIO"}</h3>
-            <p>Descripción: {detalle.descripcion}</p>
+                <button disabled={detalle.stock === 0} className="btn-detail" onClick={() => agregarCarrito()}>Agregar al carrito</button>
+                <Link className="btn-detail" to="/"><button className="btn-detail">Volver al inicio</button></Link>
 
-            {
-                detalle.oferta && <p><span className='span-positive'>Producto en Oferta</span></p>
-            }
-            <h2 className="Ctitle-detail">{detalle.nombre}</h2>
-            <h3 className="Ctext-detail">{"$" + detalle.precio}</h3>
-            <p>Descripcion: {detalle.descripcion}</p>
-
-            {
-                detalle.stock > 0 ?
-                <p>Quedan: {detalle.stock} unidades</p> :
-                <p className='span-negative'>Producto agotado!</p>
-            }
-
-            <button disabled={detalle.stock === 0} className="btn-detail" onClick={() => agregarCarrito()}>Agregar al carrito</button>
-            <button className="btn-detail">Volver al inicio</button>
-
+            </div>
         </div>
     );
 };
